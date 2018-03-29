@@ -12,6 +12,8 @@ import vg.civcraft.mc.namelayer.GroupManager;
 import com.untamedears.JukeAlert.JukeAlert;
 import com.untamedears.JukeAlert.manager.ConfigManager;
 
+import java.sql.Timestamp;
+
 public class Snitch implements QTBox, Comparable<Snitch> {
 
 	private int snitchId;
@@ -40,15 +42,25 @@ public class Snitch implements QTBox, Comparable<Snitch> {
 
 	private int radius;
 
+	private Timestamp lastAdminVisit;
+
 	public Snitch(Location loc, Group group, boolean shouldLog, boolean shouldToggleLevers) {
+		this(loc,group,shouldLog,shouldToggleLevers,new Timestamp(System.currentTimeMillis()));
+	}
+	public Snitch(Location loc, Group group, boolean shouldLog, boolean shouldToggleLevers, Timestamp lastAdminVisit) {
 
 		this.group = group;
 		this.shouldLog = shouldLog;
 		this.location = loc;
 		this.shouldToggleLevers = shouldToggleLevers;
 		this.name = "";
+		this.lastAdminVisit = lastAdminVisit;
 		radius = 11;
 		calculateDimensions();
+	}
+
+	public Timestamp getLastAdminVisit() {
+		return lastAdminVisit;
 	}
 
 	public int getX() {
@@ -308,5 +320,9 @@ public class Snitch implements QTBox, Comparable<Snitch> {
 			"Location: %s\nGroup: %s%s%s%s%s",
 			snitchLocation, snitchGroup, typeFmt, cullTimeFmt, previousNameFmt, nameFmt);
 		return hoverText;
+	}
+
+	public void visitByAdmin(){
+		lastAdminVisit = new Timestamp(System.currentTimeMillis());
 	}
 }

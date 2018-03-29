@@ -92,20 +92,8 @@ public class Utility {
 		if (group == null) {
 			return true;
 		}
-
-		try{
-			PreparedStatement getSnitchLastVisitStmt = JukeAlert.getInstance().getJaLogger().getDb().prepareStatement(String.format(
-					"SELECT last_semi_owner_visit_date FROM %s WHERE snitch_id = ?", JukeAlert.getInstance().getConfigManager().getPrefix() + "snitchs"));
-
-			getSnitchLastVisitStmt.setInt(1,snitch.getId());
-			ResultSet rs = getSnitchLastVisitStmt.executeQuery();
-			if(rs.first()){
-				Timestamp stamp = rs.getTimestamp(1);
-				if(System.currentTimeMillis() - stamp.getTime() > (snitch.shouldLog() ? JukeAlert.getInstance().getConfigManager().snitchSoftCullMillis : JukeAlert.getInstance().getConfigManager().entrySoftCullMillis)){
-					return true;
-				}
-			}
-		}catch(SQLException e){
+		if(System.currentTimeMillis() - snitch.getLastAdminVisit().getTime() > (snitch.shouldLog() ? JukeAlert.getInstance().getConfigManager().snitchSoftCullMillis : JukeAlert.getInstance().getConfigManager().entrySoftCullMillis)){
+			return true;
 		}
 		// Group object might be outdated so use name
 		return NameAPI.getGroupManager().hasAccess(group.getName(), accountId,

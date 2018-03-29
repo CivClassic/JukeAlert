@@ -674,7 +674,8 @@ public class JukeAlertLogger {
 						world_.getName(), (int) x, (int) y, (int) z, groupName));
 				}
 				Snitch snitch = new Snitch(location, group, rs_.getBoolean("snitch_should_log"),
-					rs_.getBoolean("allow_triggering_lever"));
+					rs_.getBoolean("allow_triggering_lever"),rs_.getTimestamp("last_semi_owner_visit_date"));
+		
 				snitch.setId(rs_.getInt("snitch_id"));
 				snitch.setName(rs_.getString("snitch_name"));
 				return snitch;

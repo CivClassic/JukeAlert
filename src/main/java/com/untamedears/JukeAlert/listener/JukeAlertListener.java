@@ -523,6 +523,7 @@ public class JukeAlertListener implements Listener {
 							PermissionType.getPermission("LIST_SNITCHES"))) {
 						if (!inList.contains(snitch)) {
 							inList.add(snitch);
+							snitch.visitByAdmin();
 							plugin.getJaLogger().logSnitchVisit(snitch);
 						}
 					}
