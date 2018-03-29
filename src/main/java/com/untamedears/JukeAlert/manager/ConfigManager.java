@@ -40,9 +40,13 @@ public class ConfigManager {
 
 	private int maxEntryLifetimeDays;
 
+	public long entrySoftCullMillis;
+
 	private boolean snitchCullingEnabled;
 
 	private int maxSnitchLifetimeDays;
+
+	public long snitchSoftCullMillis;
 
 	private Double maxAlertDistanceAll = null;
 
@@ -111,8 +115,10 @@ public class ConfigManager {
 		maxEntryCount = config.getInt("entryculling.maxcount", 200);
 		minEntryLifetimeDays = config.getInt("entryculling.minlifetime", 1);
 		maxEntryLifetimeDays = config.getInt("entryculling.maxlifetime", 8);
+		entrySoftCullMillis = config.getLong("entryculling.softcullmillis", 1209600000L);
 		snitchCullingEnabled = config.getBoolean("snitchculling.enabled", false);
 		maxSnitchLifetimeDays = config.getInt("snitchculling.maxlifetime", 21);
+		snitchSoftCullMillis = config.getLong("snitchculling.softcullmillis", 1209600000L);
 		alertRateLimit = config.getInt("settings.alertratelimit", 70);
 		enableInvisibility = config.getBoolean("settings.enableinvisiblity", false);
 		toggleRestartCheckGroup = config.getBoolean("settings.togglerestartgroupcheck", false);

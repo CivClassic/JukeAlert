@@ -27,8 +27,10 @@ entryculling:
   maxcount: 200
   minlifetime: 1
   maxlifetime: 8
+  softcullmillis: 1209600000
 snitchculling:
   maxlifetime: 21
   enabled: false
+  softcullmillis: 1209600000
 mercury:
   broadcastallservers: false
