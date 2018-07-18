@@ -547,7 +547,7 @@ public class JukeAlertListener implements Listener {
 									TextComponent message = new TextComponent(ChatColor.AQUA + " * "
 										+ player.getDisplayName() + " entered snitch at "
 										+ snitch.getName() + " [" + snitch.getLoc().getWorld().getName() + " "
-										+ snitch.getX() + " " + snitch.getY() + " " + snitch.getZ() + "]");
+										+ location.getX() + " " + location.getY() + " " + location.getZ() + "]");
 									String hoverText = snitch.getHoverText(null, null);
 									message.setHoverEvent(
 										new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(hoverText).create()));
