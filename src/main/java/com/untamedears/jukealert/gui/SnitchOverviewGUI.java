@@ -4,6 +4,7 @@ import com.untamedears.jukealert.model.Snitch;
 import com.untamedears.jukealert.model.appender.DormantCullingAppender;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Collections;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -86,6 +87,7 @@ public class SnitchOverviewGUI {
 				}
 			});
 		}
+		Collections.reverse(clickables);
 		return clickables;
 	}
 
